@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>legend|查看数据</title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>查看数据系统</h2>
+    </div>
+
+#优化：‘进入游戏总人数’指的是游戏IP人数；
+<a href="{% url 'legend:cleanalldata' %}" class="btn btn-danger" >清空数据</a>
+<a href="{% url 'legend:getdata' %}" class="btn btn-danger" >开始爬虫</a>
+<a href="{% url 'legend:cleanDate' %}" class="btn btn-danger" >清理爬虫数据</a>
+<table class="table table-striped table-dark" style="margin-bottom: 50px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">所有网点击数</th>
+      <th scope="col">进入游戏总人数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">#</th>
+      <td>{{ clickCount }}</td>
+      <td>{{ allipCount }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<span>#点击打广告IP，过滤重复</span>
+<table class="table table-striped table-dark" style="margin-bottom: 50px">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">网站名</th>
+      <th scope="col">入口点击量</th>
+      <th scope="col">入口点击IP</th>
+      <th scope="col">网站进入游戏人数</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for c in click %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ c.advertisement }}</td>
+      <td>{{ c.click }}次</td>
+        {% if c.name == 'jjj' %}
+          <td>{{ jjjenter }}人</td>
+          <td>{{ countjjj }}人</td>
+        {% elif c.name == '2hq' %}
+            <td>{{ cq2hbenter }}人</td>
+            <td>{{ count2hq }}人</td>
+        {% elif c.name == '9pk' %}
+            <td>{{ cq9pkenter }}人</td>
+            <td>{{ count9pk }}人</td>
+        {% elif c.name == '6xq' %}
+            <td>{{ cq6xqenter }}人</td>
+            <td>{{ count6xq }}人</td>
+        {% else %}
+            <td></td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+{#<table class="table table-striped">#}
+{#  <thead>#}
+{#    <tr>#}
+{#      <th scope="col">#</th>#}
+{#      <th scope="col">#</th>#}
+{#      <th scope="col">#</th>#}
+{#    </tr>#}
+{#  </thead>#}
+{#  <thead class="thead-dark">#}
+{#    <tr>#}
+{#      <th scope="col">#</th>#}
+{#    </tr>#}
+{#  </thead>#}
+{#</table>#}
+
+
+
+<span>#这里只显示充值的用户</span>
+    <div class="content">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">帐号</th>
+                <th scope="col">角色名</th>
+                <th scope="col">充值元宝</th>
+                <th scope="col">机器码</th>
+                <th scope="col">来自网站</th>
+                <th scope="col">服务器</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for a in array %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ a.username }}</td>
+                    <td>{{ a.character }}</td>
+                    <td>{{ a.gold }}</td>
+                    <td>{{ a.machine }}</td>
+                    <td>{{ a.website.advertisement.advertisement }}</td>
+                    <td>{{ a.servername }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<span>#本产品属于检测行为</span>
+<span>#如果用户在成功付款后5秒内领取了元宝，有小概率获取不到充值信息</span>
+<span>#15分钟更新一次充值信息</span>
+<span>#如果用户充值15分钟后一直不领取，那么每15分钟会叠加这次的充值</span>
+</body>
+</html>
