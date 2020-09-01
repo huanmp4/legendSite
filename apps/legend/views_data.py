@@ -11,6 +11,7 @@ import re
 def getData(request):
     url = "https://918hj.zjlbw.top/"
     chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument('--headless')
     driver = webdriver.Chrome(chrome_options=chrome_options)
 
