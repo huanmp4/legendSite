@@ -23,16 +23,13 @@
         background-color:#f2f2f2;
         font-family: "Microsoft YaHei", Verdana, Arial, sans-serif, 宋体;
         color: rgb(51, 51, 51);
-        font-size: 14px;
+        font-size: 12px;
         line-height: 1.42857;
     }
 
     .bgOfall{
         position:fixed;
         z-index:-1;
-    }
-    .tr-font{
-        font-size:12px;
     }
     th{
         border:1px solid gray;
@@ -93,7 +90,7 @@
                     {# 优先级一-现在的服:#}
                     {% for legend in priority1 %}
 
-                        <tr class="bg-warning tr-font table-tr">
+                        <tr class="bg-warning table-tr">
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
                             {% if legend.onPage == "allNight" %}
@@ -112,24 +109,12 @@
 
                 {# 优先级二-全日推荐服)#}
                 {% for legend in priority2 %}
-                        {% if legend.onPage == "allNight" %}
-                            <tr class="table-secondary tr-font table-tr">
-                        {% elif legend.onPage == "allDay" %}
-                            <tr class="bg-warning tr-font table-tr">
-                        {% else %}
-                            <tr class="bg-warning tr-font table-tr">
-                        {% endif %}
+                            <tr class="bg-danger table-tr">
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
-                            {% if legend.onPage == "allNight" %}
-                                <td class="table-td" style="color:red">{{ legend.time|time_format }}通宵推荐</td>
-                            {% elif legend.onPage == "allDay" %}
-                                <td class="table-td" style="color:red">{{ legend.time|time_format }}全天推荐</td>
-                            {% elif legend.onPage == "normal" %}
-                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
-                            {% endif %}
+                            <td class="table-td" style="color:black">{{ legend.time|time_format }}全天推荐</td>
                             <td class="table-td" >{{ legend.type }}</td>
-                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:yellow">推荐</span></td>
                             <td class="table-td" >{{ legend.QQ }}</td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
                         </tr>
@@ -140,9 +125,9 @@
                         {% if legend.onPage == "allNight" %}
                             <tr class="table-secondary tr-font table-tr">
                         {% elif legend.onPage == "allDay" %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% else %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% endif %}
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
@@ -166,9 +151,9 @@
                         {% if legend.onPage == "allNight" %}
                             <tr class="table-secondary tr-font table-tr">
                         {% elif legend.onPage == "allDay" %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% else %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% endif %}
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
@@ -192,9 +177,9 @@
                         {% if legend.onPage == "allNight" %}
                             <tr class="table-secondary tr-font table-tr">
                         {% elif legend.onPage == "allDay" %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% else %}
-                            <tr class="bg-warning tr-font table-tr">
+                            <tr class="bg-warning table-tr">
                         {% endif %}
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
                             <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
@@ -235,8 +220,6 @@
         </div>
     </div>
 </div>
-1.付款后，可用激活码自行输入传奇
-2.使用爬虫。
-https://github.com/huanmp4/legendSite.git
+
 </body>
 </html>

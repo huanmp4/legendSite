@@ -6,10 +6,14 @@ function Dragen() {
 
 Dragen.prototype.onhoverEvent = function(){
     var self = this;
+    var oldclass = '';
     self.tr.hover(function(){
-        $(this).removeClass("bg-warning")
+        oldclass = $(this).attr("class");
+        console.log("oldclass",oldclass);
+        $(this).removeClass(oldclass);
+        $(this).removeClass(oldclass);
     },function(){
-        $(this).addClass("bg-warning")
+        $(this).addClass(oldclass)
     })
 };
 

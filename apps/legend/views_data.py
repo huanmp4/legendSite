@@ -12,7 +12,8 @@ def getData(request):
     url = "https://918hj.zjlbw.top/"
     chrome_options = Options()
     chrome_options.add_argument('--headless')
-    driver = webdriver.Chrome(chrome_options=chrome_options)
+    # driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver = webdriver.Chrome()
     driver.get(url)
     iframe = driver.find_elements_by_tag_name('iframe')[0]  # 查找第一个[0]iframe
     driver.switch_to.frame(iframe)  # 查找进入刚刚查找的iframe里面

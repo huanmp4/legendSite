@@ -13,7 +13,7 @@ def index(request):
 
 
     minute_start = 0 if int(minute_now) - 30 < 0 else 30
-    minute_end = 59 if minute_start == 30 else 30
+    minute_end = 59 if minute_start == 30 else 29
 
     minute_p3_start = 30 if int(minute_now) < 30 else 0
     minute_p3_end = 59 if minute_p3_start == 30 else 30
