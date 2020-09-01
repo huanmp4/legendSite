@@ -210,4 +210,4 @@ def CleanAllData(request):
     websiteclickClean.update(click=0)
     websiteclickClean = WebSiteClick.objects.filter(id=4)
     websiteclickClean.update(click=0)
-    return redirect(reverse('legendattach:check'))
+    return redirect(reverse('legend:check'))

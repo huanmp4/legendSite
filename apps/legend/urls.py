@@ -2,9 +2,10 @@ from django.urls import path
 from . import views
 from . import views_data
 from . import views_index
+from . import tests
 app_name = "legend"
 urlpatterns = [
-    path('test',views.index,name="test"),
+
     path('visit',views.visit,name="visit"),
     path('check',views.check,name="check"),
     path('cleanalldata', views.CleanAllData, name="cleanalldata"),
@@ -18,7 +19,15 @@ urlpatterns += [
 
 ]
 
+#传奇主页
 urlpatterns += [
     path("",views_index.index,name="index"),
+
+]
+
+
+#测试
+urlpatterns += [
+    path("test",tests.test,name="test"),
 
 ]

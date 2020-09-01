@@ -48,5 +48,15 @@ def time_since(value):
 def time_format(value):
     if not isinstance(value,datetime):
         return value
-
-    return localtime(value).strftime("%%m/%d %H:%M:%S")
+    month = datetime.strftime(value, "%m")
+    day = datetime.strftime(value,"%d")
+    hour = datetime.strftime(value,"%H")
+    minute = datetime.strftime(value,"%M")
+    if minute == "00" :
+        tt = "%s月%s日 %s点开服" % (month, day, hour)
+    # 通宵服或全天推荐服
+    if int(hour) == 0:
+        tt = "%s月%s日" % (month, day)
+    else:
+        tt = "%s月%s日 %s点%s分开服" % (month, day, hour, minute)
+    return tt

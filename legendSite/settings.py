@@ -26,7 +26,7 @@ SECRET_KEY = 'v2!ekspc^=f4!1l4pa2@bdzxi5y-hnta8851*(7(9csk)g4^p8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["106.13.7.98","127.0.0.1","www.vs6688.com"]
+ALLOWED_HOSTS = ["106.13.7.98","127.0.0.1","www.vs6688.com",".vs6688.com"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.legend',
     'apps.UserInfo',
+    'apps.testa',
 ]
 
 MIDDLEWARE = [

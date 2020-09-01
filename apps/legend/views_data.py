@@ -22,6 +22,7 @@ def getData(request):
     soup_dl = soup.find_all("dl")
     legend_list = []
     howMany = 0
+    legendInfo = legendSite.objects.all()
     for index, dl in enumerate(soup_dl):
         temp_list = []
         howMany += 1
@@ -81,26 +82,37 @@ def getData(request):
             temp_legend = legend[2]
         spli = temp_legend.split("/")
 
+
+        onPage = ''
+        dd = ''
         if spli[0] == "---精品全天固定---":
             onPage = "allDay"
             ttime = time.strftime('%Y-%m-%d 0:0:0', time.localtime(time.time()))
             dd = ttime
-            legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
-                                      introduce=legend[4],
-                                      QQ=legend[5],href=legend[6], onPage=onPage)
+            is_exist = legendInfo.filter(serverName=legend[0], time=dd).exists()
+            if not is_exist:
+                legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
+                                          introduce=legend[4],
+                                          QQ=legend[5],href=legend[6], onPage=onPage)
         elif spli[-1] == "★通宵推荐★":
             onPage = "allNight"
             ttime = time.strftime('%Y-%m-%d 0:0:0', time.localtime(time.time()))
             dd = ttime
-            legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3], introduce=legend[4],
-                                      QQ=legend[5],href=legend[6], onPage=onPage)
+            is_exist = legendInfo.filter(serverName=legend[0], time=dd).exists()
+            if not is_exist:
+                legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
+                                          introduce=legend[4],
+                                          QQ=legend[5], href=legend[6], onPage=onPage)
 
         elif spli[-1] == "★错误时间★":
             onPage = "error"
             ttime = time.strftime('%Y-%m-%d 0:0:0', time.localtime(time.time()))
             dd = ttime
-            legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3], introduce=legend[4],
-                                      QQ=legend[5],href=legend[6], onPage=onPage)
+            is_exist = legendInfo.filter(serverName=legend[0], time=dd).exists()
+            if not is_exist:
+                legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
+                                          introduce=legend[4],
+                                          QQ=legend[5], href=legend[6], onPage=onPage)
         else:
             try:
                 onPage = "normal"
@@ -111,20 +123,24 @@ def getData(request):
                 minute = spli[2].split("点")[1].split("开放")[0].replace('分', '')
                 minute = minute if minute != '' else 0
                 dd = "%s-%s-%s %s:%s:0" % (year, month, day, hour, minute)
-                legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
-                                          introduce=legend[4],
-                                          QQ=legend[5],href=legend[6], onPage=onPage)
+                is_exist = legendInfo.filter(serverName=legend[0], time=dd).exists()
+                if not is_exist:
+                    legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
+                                              introduce=legend[4],
+                                              QQ=legend[5], href=legend[6], onPage=onPage)
 
             except:
                 onPage = "allNight"
                 ttime = time.strftime('%Y-%m-%d 0:0:0', time.localtime(time.time()))
                 dd = ttime
-                legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
-                                          introduce=legend[4],
-                                          QQ=legend[5], onPage=onPage)
+                is_exist = legendInfo.filter(serverName=legend[0], time=dd).exists()
+                if not is_exist:
+                    legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
+                                              introduce=legend[4],
+                                              QQ=legend[5], href=legend[6], onPage=onPage)
 
-    return redirect(reverse('legendattach:check'))
+    return redirect(reverse('legend:check'))
 
 def cleanDate(request):
     legendSite.objects.all().delete()
-    return redirect(reverse('legendattach:check'))
+    return redirect(reverse('legend:check'))

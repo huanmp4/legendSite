@@ -83,18 +83,153 @@
                         <th scope="col">详细介绍</th>
                     </tr>
                 </thead>
+{# 优先级一-现在的服:#}
+{# 优先级二-全日推荐服)#}
+{# 优先级三-半小时前的服:#}
+{# 优先级四-通宵服:#}
+{# 优先级五-首推之后的服:#}
                 <tbody class="tbodyOfTable">
-                    {% for legend in legends %}
-                    <tr class="bg-warning tr-font table-tr">
-                        <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
-                        <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
-                        <td class="table-td" style="color:red">{{ legend.time }}</td>
-                        <td class="table-td" >{{ legend.type }}</td>
-                        <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
-                        <td class="table-td" >{{ legend.QQ }}</td>
-                        <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
-                    </tr>
+
+                    {# 优先级一-现在的服:#}
+                    {% for legend in priority1 %}
+
+                        <tr class="bg-warning tr-font table-tr">
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+                            {% if legend.onPage == "allNight" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}通宵推荐</td>
+                            {% elif legend.onPage == "allDay" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}全天推荐</td>
+                            {% elif legend.onPage == "normal" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+                            {% endif %}
+                            <td class="table-td" >{{ legend.type }}</td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.QQ }}</td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
+                        </tr>
                     {% endfor %}
+
+                {# 优先级二-全日推荐服)#}
+                {% for legend in priority2 %}
+                        {% if legend.onPage == "allNight" %}
+                            <tr class="table-secondary tr-font table-tr">
+                        {% elif legend.onPage == "allDay" %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% else %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% endif %}
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+                            {% if legend.onPage == "allNight" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}通宵推荐</td>
+                            {% elif legend.onPage == "allDay" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}全天推荐</td>
+                            {% elif legend.onPage == "normal" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+                            {% endif %}
+                            <td class="table-td" >{{ legend.type }}</td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.QQ }}</td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
+                        </tr>
+                    {% endfor %}
+
+                {# 优先级三-半小时前的服:#}
+                {% for legend in priority3 %}
+                        {% if legend.onPage == "allNight" %}
+                            <tr class="table-secondary tr-font table-tr">
+                        {% elif legend.onPage == "allDay" %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% else %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% endif %}
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+                            {% if legend.onPage == "allNight" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}通宵推荐</td>
+                            {% elif legend.onPage == "allDay" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}全天推荐</td>
+                            {% elif legend.onPage == "normal" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+                            {% endif %}
+                            <td class="table-td" >{{ legend.type }}</td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.QQ }}</td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
+                        </tr>
+                    {% endfor %}
+
+                {# 优先级四-通宵服:#}
+                {% if priority4 %}
+                {% for legend in priority4 %}
+                        {% if legend.onPage == "allNight" %}
+                            <tr class="table-secondary tr-font table-tr">
+                        {% elif legend.onPage == "allDay" %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% else %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% endif %}
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+                            {% if legend.onPage == "allNight" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}通宵推荐</td>
+                            {% elif legend.onPage == "allDay" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}全天推荐</td>
+                            {% elif legend.onPage == "normal" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+                            {% endif %}
+                            <td class="table-td" >{{ legend.type }}</td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.QQ }}</td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+
+                {# 优先级五-首推之后的服:#}
+                {% for legend in priority5 %}
+                        {% if legend.onPage == "allNight" %}
+                            <tr class="table-secondary tr-font table-tr">
+                        {% elif legend.onPage == "allDay" %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% else %}
+                            <tr class="bg-warning tr-font table-tr">
+                        {% endif %}
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+                            {% if legend.onPage == "allNight" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}★通宵推荐★</td>
+                            {% elif legend.onPage == "allDay" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}★精品推荐★</td>
+                            {% elif legend.onPage == "normal" %}
+                                <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+                            {% endif %}
+                            <td class="table-td" >{{ legend.type }}</td>
+                            <td class="table-td" >{{ legend.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+                            <td class="table-td" >{{ legend.QQ }}</td>
+                            <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">查看介绍</a></td>
+                        </tr>
+                    {% endfor %}
+
+
+
+
+
+                <tr class="bg-info tr-font" >
+
+                    <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.serverName }}</a></td>
+                    <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}">{{ legend.ip }}</a></td>
+
+                    <td class="table-td" style="color:red">{{ legend.time|time_format }}</td>
+
+                    <td class="table-td" >{{ legend.type }}</td>
+                    <td class="table-td" >{{ legend.introduce }}</td>
+                    <td class="table-td" >{{ legend.QQ }}</td>
+                    <td class="table-td" ><a class="table-a" target="_blank" href="{{ legend.href }}"></a></td>
+                </tr>
+
+
                 </tbody>
             </table>
         </div>
