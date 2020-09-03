@@ -52,3 +52,14 @@ class legendSite(models.Model):
     onPage = models.CharField(max_length=10,default="normal")
     class Meta:
         ordering = ["time"]
+
+class oldLegendSite(models.Model):
+    serverName = models.CharField(max_length=18)
+    ip = models.CharField(max_length=18)
+    time = models.DateTimeField()
+    type = models.CharField(max_length=18)
+    introduce = models.CharField(max_length=40)
+    QQ = models.CharField(max_length=18)
+    isActive = models.BooleanField(default=False)
+    href = models.CharField(max_length=100,default='null')
+    onPage = models.CharField(max_length=10,default="normal")

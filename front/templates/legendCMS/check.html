@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <title>legend|查看数据</title>
 
-
+{#    bootstrap#}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    {# 消息提示盒 #}
+    <link rel="stylesheet" href="{% static 'source/sweetalert/sweetalert.css' %}">
+    <script src="{% static 'source/sweetalert/sweetalert.min.js' %}"></script>
+    <script src="{% static 'source/sweetalert/alert.js' %}"></script>
 
+    <script src="{% static 'source/legendJS/check.js' %}"></script>
 
 </head>
 <body>
@@ -21,9 +26,11 @@
     </div>
 
 #优化：‘进入游戏总人数’指的是游戏IP人数；
-<a href="{% url 'legend:cleanalldata' %}" class="btn btn-info" >清空数据</a>
-<a href="{% url 'legend:getdata' %}" class="btn btn-primary" style="margin-right:170px">开始爬虫</a>
-<a href="{% url 'legend:cleanDate' %}" class="btn btn-danger" >清理爬虫数据</a>
+<a href="{% url 'legend:startJob' %}" class="btn btn-warning" id="cleanWebDate">开始爬虫计划</a>
+
+<a href="{% url 'legend:cleanalldata' %}" class="btn btn-info" id="cleanWebDate">清空数据</a>
+<a href="{% url 'legend:getdata' %}" class="btn btn-primary" id="spiderStart" style="margin-right:170px">开始爬虫</a>
+<a href="{% url 'legend:cleanDate' %}" class="btn btn-danger" id="cleanAllOfSpider">清理爬虫数据</a>
 <table class="table table-striped table-dark" style="margin-bottom: 50px">
   <thead>
     <tr>

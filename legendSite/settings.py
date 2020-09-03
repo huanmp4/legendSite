@@ -55,10 +55,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'legendSite.urls'
 
+
+#views.py模板提示导航，如果删除"front","templates"会出错
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'front','templates')]
+        'DIRS': [os.path.join(BASE_DIR,"front","templates")]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -128,5 +130,6 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static_dist')
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'front'),
     os.path.join(BASE_DIR,'front',"templates")
 ]

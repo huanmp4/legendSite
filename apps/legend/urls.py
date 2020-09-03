@@ -15,7 +15,9 @@ urlpatterns = [
 #传奇发布网
 urlpatterns += [
     path("getdata",views_data.getData,name="getdata"),
-    path("cleanDate",views_data.cleanDate,name="cleanDate")
+    path("cleanDate",views_data.cleanDate,name="cleanDate"),
+    path("startJob",views_data.startJob,name="startJob"),
+
 
 ]
 

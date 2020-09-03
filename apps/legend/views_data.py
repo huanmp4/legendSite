@@ -1,14 +1,16 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.chrome.options import Options
-from .models import legendSite
-import time
+from .models import legendSite,oldLegendSite
+import time,datetime
 from django.shortcuts import redirect,reverse,render
 import re
+from apscheduler.schedulers.blocking import BlockingScheduler
 
-
+left = 0
 
 def getData(request):
+
     url = "https://918hj.zjlbw.top/"
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
@@ -140,9 +142,36 @@ def getData(request):
                     legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
                                               introduce=legend[4],
                                               QQ=legend[5], href=legend[6], onPage=onPage)
-
     return redirect(reverse('legend:check'))
+
 
 def cleanDate(request):
     legendSite.objects.all().delete()
-    return redirect(reverse('legend:check'))
+
+
+#清除1天前的私服数据
+def cleanYesterdayBeforeDate(request):
+    #把数据移动到别的表
+    yesterdayData = time.strftime("%Y-%m-%d 0:0:0", time.localtime(time.time()))
+    oldData = legendSite.objects.filter(time__lt=yesterdayData)
+
+    for data in oldData:
+        oldLegendSite.objects.create(serverName=data.serverName, ip=data.ip, time=data.time, type=data.type,
+                                              introduce=data.introduce,
+                                              QQ=data.QQ, href=data.href, onPage=data.onPage)
+    #删除
+    legendSite.objects.filter(time__lt=yesterdayData).delete()
+
+def test1():
+    print("每一分钟运行一次",time.localtime(time.time()))
+    return "OK"
+
+
+#"interval"参数是minutes,seconds,而且必须是int类型
+#"cron"参数是minute,second,类型可以是str或int
+def startJob(self):
+    schedule = BlockingScheduler()
+    schedule.add_job(test1,"interval",minutes=1,id="test1")
+    # schedule.add_job(getData,"interval",minutes=30,id="getData_job")
+    # schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
+    schedule.start()

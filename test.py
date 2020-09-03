@@ -1,9 +1,31 @@
-import datetime,time
-now = datetime.datetime.now()
-minute = time.strftime("%M",now.timetuple())
-minute_start = 0 if int(minute) - 30 < 0 else 30
-minute_end = 0 if minute_start == 30 else 30
-firest_start = time.strftime("%Y-%m-%d %H:" + str(minute_start) + ":0",now.timetuple())
-firest_end = time.strftime("%Y-%m-%d %H:" + str(minute_end) + ":0",now.timetuple())
-print("start",minute_start)
-print("end",minute_end)
+
+from pytz import utc
+
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+from apscheduler.jobstores.mongodb import MongoDBJobStore
+
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
+
+from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
+
+jobstores = {
+
+    'mongo': MongoDBJobStore(),
+
+    'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite')
+}
+
+executors  = {
+    'default': ThreadPoolExecutor(20),
+    'processpool': ProcessPoolExecutor(5)
+}
+
+job_defaults = {
+    'coalesce': False,
+
+    'max_instances': 3
+}
+
+scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
