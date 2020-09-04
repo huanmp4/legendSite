@@ -1,4 +1,3 @@
-
 {% load time_filter %}
 <!DOCTYPE html>
 <html lang="CN">
@@ -10,7 +9,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<script src="{% static 'legendhtml/dragen.js' %}"></script>}
+<link rel="stylesheet" href="{% static "source/legendCSS/page1.css" %}">
+<link rel="stylesheet" href="{% static "source/legendCSS/animate.css" %}">
+<script src="{% static 'legendhtml/dragen.js' %}"></script>
 <link rel="stylesheet" href="{% static 'legendhtml/index_style.css' %}">
 <head>
     <meta charset="UTF-8">
@@ -19,55 +20,33 @@
 
 <style type="text/css">
 
-    body{
-        background-color:#f2f2f2;
-        font-family: "Microsoft YaHei", Verdana, Arial, sans-serif, 宋体;
-        color: rgb(51, 51, 51);
-        font-size: 12px;
-        line-height: 1.42857;
-    }
 
-    .bgOfall{
-        position:fixed;
-        z-index:-1;
-    }
-    th{
-        border:1px solid gray;
-        text-align:center;
-    }
-    td{
-        border:1px solid gray;
-        text-align:center;
-    }
-    .table{
-        background-color:white;
-        border:10px solid rgba(0 0 0 0.6);
-        box-sizing:border-box;
-    }
-    .table-a{
-        color:black;
-    }
 </style>
 
 
 
 <body>
-
-<div class="bgOfall">
-    <img src="{% static 'legendhtml/dragen.jpg' %}" alt="">
+<div class="guns sky">
+    <div class="clouds_one"></div>
+    <div class="clouds_two"></div>
+    <div class="clouds_three"></div>
 </div>
+
 
 <div class="container">
     <div class="container-fluid">
         <div class="jumbotron bg-info">
-            <div class="display-4">
-                传奇私服LOGO
+            <div class="item-1 child1">
+                <div class="word ">
+                    <span class="resume-hide ">vs6688.com</span>
+                </div>
             </div>
-            <p class="lead">欢迎来到传奇私服网站，本网站免费发布，扶持好服，抵制奸商</p>
-            <hr class="my-4">
-            <p>让玩家和GM都有一个良好的环境</p>
+            <p class="lead child2 middle-content">欢迎来到vs6688传奇私服网站，本网站免费发布，扶持好服，造传奇沙漠的一片绿洲</p>
+            <hr class="my-4 child3">
+            <p class="child4" style="font-size:18px;color:white">让玩家和GM都有一个良好的环境，兼顾屏幕小大不同的用户，本站采用响应式表单</p>
+            <p class="child4" style="font-size:15px;color:black">如下链接有违反我国法律的行为或其它不良行为，请联系本站站长QQ:2220605971</p>
         </div>
-        <div class="contain">
+        <div class="contain child5">
             <table class="table ">
                 <thead class="thead-pink">
                     <tr class="tr-font bg-info">
@@ -85,7 +64,7 @@
 {# 优先级三-半小时前的服:#}
 {# 优先级四-通宵服:#}
 {# 优先级五-首推之后的服:#}
-                <tbody class="tbodyOfTable">
+                <tbody class="tbodyOfTable ">
 
                     {# 优先级一-现在的服:#}
                     {% for legend in priority1 %}

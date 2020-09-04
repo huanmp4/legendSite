@@ -1,0 +1,81 @@
+{% extends "legendCMS/base.html" %}
+
+{% block contain %}
+<div>
+    <form action="">
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    服务器名:
+                </span>
+            </div>
+            <input name="serverName" class="form-control " type="text" placeholder="">
+        </div>
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ip:
+                </span>
+            </div>
+            <input name="ip" class="form-control " type="text" placeholder="">
+        </div>
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span  class="input-group-text">
+                    开服时间:
+                </span>
+            </div>
+            <input name="time1" class="form-control" type="date">
+        </div>
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span  class="input-group-text">
+                    开服时间:
+                </span>
+            </div>
+            <input name="time2" class="form-control " type="time" placeholder="">
+        </div>
+
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    类型:
+                </span>
+            </div>
+            <input name="type" class="form-control " type="text" placeholder="">
+        </div>
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    介绍:
+                </span>
+            </div>
+            <input name="introduce" class="form-control " type="text" placeholder="">
+        </div>
+        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    QQ:
+                </span>
+            </div>
+            <input name="QQ" class="form-control " type="text" placeholder="">
+        </div>
+        <div class="input-group mb-3 col-lg-10" style="padding-left:0">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    网站链接:
+                </span>
+            </div>
+            <input name="href" class="form-control " type="text" placeholder="">
+        </div>
+
+        <div class="input-group-append" >
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">提交</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock %}

@@ -17,10 +17,22 @@ Dragen.prototype.onhoverEvent = function(){
     })
 };
 
+Dragen.prototype.firstLoad = function(){
+    setTimeout(function () {
+          $('.jumbotron').show();
+        }, 500);
+    $('item-4').css('background', 'rgba(255, 255, 255, .1)');
+};
+
 Dragen.prototype.Run = function() {
     this.onhoverEvent();
 };
+
+
+
+
 $(function(){
     var gragen = new Dragen();
     gragen.Run();
+    gragen.firstLoad();
 });

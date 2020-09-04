@@ -3,6 +3,7 @@ from . import views
 from . import views_data
 from . import views_index
 from . import tests
+from . import views_cms
 app_name = "legend"
 urlpatterns = [
 
@@ -27,6 +28,11 @@ urlpatterns += [
 
 ]
 
+#cms
+urlpatterns += [
+    path("input",views_cms.input,name="input"),
+
+]
 
 #测试
 urlpatterns += [
