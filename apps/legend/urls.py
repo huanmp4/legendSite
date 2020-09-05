@@ -25,6 +25,7 @@ urlpatterns += [
 #传奇主页
 urlpatterns += [
     path("",views_index.index,name="index"),
+    path("searchSubmit",views_index.searchSubmit,name="searchSubmit"),
 
 ]
 

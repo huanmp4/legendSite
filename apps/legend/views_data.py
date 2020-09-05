@@ -9,7 +9,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 left = 0
 
-def getData(request):
+def getData():
 
     url = "https://918hj.zjlbw.top/"
     chrome_options = Options()
@@ -66,14 +66,8 @@ def getData(request):
         legend_list.append(temp_list)
 
     for legend in legend_list:
-        print("dl:",legend)
-        # spli = legend[2].split("/")
-        # month = spli[0][0]
-        # day = spli[1][0:2]
-        # hour = spli[2][0]
-        # minute = spli[2][2:4]
-        # year = time.strftime('%Y', time.localtime(time.time()))
-        # dd = "%s-%s-%s %s:%s:0" % (year, month, day, hour, minute)
+        # print("dl:",legend)
+
         #如果时间是空的,就给个假时间给它
         if len(legend) < 4  or len(legend) >= 8:
             print("警告,列表元素小于3或大于7")
@@ -142,15 +136,17 @@ def getData(request):
                     legendSite.objects.create(serverName=legend[0], ip=legend[1], time=dd, type=legend[3],
                                               introduce=legend[4],
                                               QQ=legend[5], href=legend[6], onPage=onPage)
-    return redirect(reverse('legend:check'))
+    # return redirect(reverse('legend:check'))
+    print("每30分钟获取数据执行成功")
 
 
-def cleanDate(request):
+
+def cleanDate():
     legendSite.objects.all().delete()
 
 
 #清除1天前的私服数据
-def cleanYesterdayBeforeDate(request):
+def cleanYesterdayBeforeDate():
     #把数据移动到别的表
     yesterdayData = time.strftime("%Y-%m-%d 0:0:0", time.localtime(time.time()))
     oldData = legendSite.objects.filter(time__lt=yesterdayData)
@@ -161,17 +157,20 @@ def cleanYesterdayBeforeDate(request):
                                               QQ=data.QQ, href=data.href, onPage=data.onPage)
     #删除
     legendSite.objects.filter(time__lt=yesterdayData).delete()
+    return "每23小时清理数据执行成功"
 
 def test1():
     print("每一分钟运行一次",time.localtime(time.time()))
-    return "OK"
+    return "表示OK"
 
 
 #"interval"参数是minutes,seconds,而且必须是int类型
 #"cron"参数是minute,second,类型可以是str或int
-def startJob(self):
+def startJob(request):
     schedule = BlockingScheduler()
-    schedule.add_job(test1,"interval",minutes=1,id="test1")
-    # schedule.add_job(getData,"interval",minutes=30,id="getData_job")
-    # schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
+    # schedule.add_job(test1,"interval",minutes=1,id="test1")
+    schedule.add_job(test1,"interval",seconds=10,id="test1")
+    schedule.add_job(getData,"interval",minutes=30,id="getData_job")
+    schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()
+    print("开始执行计划爬虫")

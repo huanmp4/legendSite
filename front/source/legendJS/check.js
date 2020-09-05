@@ -1,3 +1,4 @@
+
 function Check() {
     var self = this;
     this.cleanAllOfSpider = $("#cleanAllOfSpider");
@@ -11,7 +12,6 @@ Check.prototype.onBTNclick = function(){
     var self = this;
     self.cleanAllOfSpider.click(
         function(){
-
         }
     )
 };

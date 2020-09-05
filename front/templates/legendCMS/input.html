@@ -1,6 +1,75 @@
 {% extends "legendCMS/base.html" %}
 
+{% block style %}
+
+<style>
+    body{
+
+    font-family: "Microsoft YaHei", Verdana, Arial, sans-serif, 宋体;
+    color: rgb(51, 51, 51);
+    font-size: 12px;
+    line-height: 1.42857;
+    }
+
+    th{
+        border:1px solid gray;
+        text-align:center;
+    }
+    td{
+        border:1px solid gray;
+        text-align:center;
+    }
+    .table{
+        background-color:white;
+        border:10px solid rgba(0 0 0 0.6);
+        box-sizing:border-box;
+    }
+    .table-a{
+        color:black;
+    }
+    .stay-in-middle{
+        display:flex;
+        justify-content: center;
+    }
+</style>
+{% endblock %}
+
 {% block contain %}
+
+
+
+<div>
+<table class="table ">
+    <thead class="thead-pink">
+        <tr class="tr-font bg-info">
+            <th scope="col">服务器名</th>
+            <th scope="col">服务器IP</th>
+            <th scope="col">开区时间 月/日/时</th>
+            <th scope="col">线路类型</th>
+            <th scope="col">版本介绍</th>
+            <th scope="col">客服QQ</th>
+            <th scope="col">详细介绍</th>
+        </tr>
+    </thead>
+
+    <tbody class="tbodyOfTable ">
+
+
+        <tr class="bg-warning table-tr">
+            <td class="table-td" ><a class="table-a"  href="#">★★★五虎神将★</a></td>
+            <td class="table-td" ><a class="table-a"  href="#">██8米顶赞██</a></td>
+
+            <td class="table-td" style="color:red">09月04日 17点00分开服</td>
+
+            <td class="table-td" >▓▓激情刀速▓▓</td>
+            <td class="table-td" >█无隐藏消费◆新款上市◆光柱满屏◆满<span>-</span><span style="color:red">推荐</span></td>
+            <td class="table-td" >██兄弟来跟华子</td>
+            <td class="table-td" ><a class="table-a"  href="#">查看介绍</a></td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
 <div>
     <form action="">
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
@@ -14,7 +83,7 @@
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    ip:
+                    服务器ip:
                 </span>
             </div>
             <input name="ip" class="form-control " type="text" placeholder="">
@@ -22,24 +91,16 @@
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
             <div class="input-group-prepend">
                 <span  class="input-group-text">
-                    开服时间:
+                    开服日期:
                 </span>
             </div>
-            <input name="time1" class="form-control" type="date">
-        </div>
-        <div class="input-group mb-3 col-lg-5" style="padding-left:0">
-            <div class="input-group-prepend">
-                <span  class="input-group-text">
-                    开服时间:
-                </span>
-            </div>
-            <input name="time2" class="form-control " type="time" placeholder="">
+            <input name="time1" class="form-control" type="datetime-local">
         </div>
 
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    类型:
+                    线路类型:
                 </span>
             </div>
             <input name="type" class="form-control " type="text" placeholder="">
@@ -47,7 +108,7 @@
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    介绍:
+                    版本介绍:
                 </span>
             </div>
             <input name="introduce" class="form-control " type="text" placeholder="">
@@ -55,7 +116,7 @@
         <div class="input-group mb-3 col-lg-5" style="padding-left:0">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    QQ:
+                    客服QQ:
                 </span>
             </div>
             <input name="QQ" class="form-control " type="text" placeholder="">
@@ -63,19 +124,38 @@
         <div class="input-group mb-3 col-lg-10" style="padding-left:0">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    网站链接:
+                    您的网站链接:
                 </span>
             </div>
             <input name="href" class="form-control " type="text" placeholder="">
         </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            传奇类型
+          </button>
+          <div class="dropdown-menu">
+              <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">轻度</a>
+            <a class="dropdown-item" href="#">中度</a>
+            <a class="dropdown-item" href="#">重度</a>
+              <div class="dropdown-divider"></div>
 
-        <div class="input-group-append" >
-            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">提交</button>
+          </div>
+        </div>
+
+        <div class="input-group-append col-lg-12 stay-in-middle" >
+            <button class="btn btn-outline-success" type="submit" id="inputGroupFileAddon04">&nbsp提交&nbsp</button>
         </div>
     </form>
 </div>
 
+<span>
+轻度：极限攻击1~120攻的服 <br>
+中度：极限攻击1~999攻的服 <br>
+重度：极限攻击1000攻以上的服 <br>
 
+
+</span>
 
 
 {% endblock %}

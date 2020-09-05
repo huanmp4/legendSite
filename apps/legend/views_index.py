@@ -50,3 +50,6 @@ def index(request):
 #2.全天推荐
 #3.半小时前的服
 #4.首推之后的服
+
+def searchSubmit(request):
+    print('22',request.GET.get("content"))

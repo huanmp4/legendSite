@@ -21,6 +21,69 @@
 <style type="text/css">
 
 
+.wrap-text {
+    width:300px;
+    height:36px;
+    display:flex;
+    justify-content:space-between;
+}
+
+
+.search-sifu{
+    background:rgba(0,0,0,0.3);
+    border:1px solid #ced4da;
+    border-bottom: 0;
+    border-radius:8px 8px 0 0;
+    padding:10px 30px 0 30px ;
+    font-size:18px;
+    color:white;
+    height:36px;
+    line-height:18px;
+    text-align: center;
+    width:116px;
+    min-width:116px;
+
+
+}
+.search-input-sifu{
+    background:rgba(0,0,0,0.3);
+    border-radius: 0 8px 8px 8px;
+    overflow: hidden;
+    padding:0;
+    border:1px solid #ced4da;
+}
+.search-input-sifu input,input:focus{
+    background-color:transparent !important;
+    border:none !important;
+    box-shadow: none !important;
+    box-sizing:border-box;
+    border-radius: 0 8px 8px 8px;
+    width:300px;
+}
+
+
+
+.btn{
+    border-left:1px solid #ced4da;
+    color:white;
+}
+
+.wrap-text-right{
+    width:280px;
+    height:36px;
+    line-height:36px;
+    text-align: center;
+    min-width:280px;
+}
+
+.wrap-text-right span{
+    margin-left:20px;
+
+}
+.wrap-text-right span a{
+    color:white;
+    font-size:18px;
+}
 </style>
 
 
@@ -35,7 +98,31 @@
 
 <div class="container">
     <div class="container-fluid">
-        <div class="jumbotron bg-info">
+        <div class="jumbotron bg-info" style="padding-top:20px;padding-bottom:20px;">
+            <div class="col-lg-12 ">
+                <div class="col-lg-3"></div>
+{#                {% url 'legend:searchSubmit' %}#}
+                <div class="search-wrap-top col-lg-6">
+                    <form action="#" method="post" id="formTable">
+                        <div class="wrap-text" >
+                            <span class="search-sifu">搜私服</span>
+                            <div class="wrap-text-right">
+                                <span><a href="" name="1.76">1.76</a></span>
+                                <span><a href="" name="1.80">1.80</a></span>
+                                <span><a href="" name="old">复古</a></span>
+                                <span><a href="" name="singleOccupation">单职业</a></span>
+                            </div>
+                        </div>
+
+                        <div class="input-group search-input-sifu col-lg-12">
+                            <input name="content" class="form-control" placeholder="输入需要找的服" type="text"/>
+                            <div class="input-group-append">
+                                <button class="btn" id="btn-search-submit" type="submit">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <div class="item-1 child1">
                 <div class="word ">
                     <span class="resume-hide ">vs6688.com</span>
