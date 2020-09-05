@@ -170,7 +170,7 @@ def startJob(request):
     schedule = BlockingScheduler()
     # schedule.add_job(test1,"interval",minutes=1,id="test1")
     schedule.add_job(test1,"interval",seconds=10,id="test1")
-    schedule.add_job(getData,"interval",minutes=1,id="getData_job")
+    schedule.add_job(getData,"interval",minutes=30,id="getData_job")
     schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()
     print("开始执行计划爬虫")
