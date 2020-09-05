@@ -1,6 +1,9 @@
 from django.shortcuts import redirect,reverse,render
 from .models import legendSite
+from django.db.models import Q
+from .serializers import legendSiteSerializers
 import datetime,time
+from utils import restful
 
 def index(request):
     legendInfo = legendSite.objects.all()
@@ -52,4 +55,20 @@ def index(request):
 #4.首推之后的服
 
 def searchSubmit(request):
-    print('22',request.GET.get("content"))
+    name180 = '１８５'
+    name176 = '１７６'
+
+    serverName = request.POST.get('content')
+    if serverName == '1.76':
+        serverName = name176
+    if serverName == '1.80':
+        serverName = name180
+    print("servi:",serverName)
+    strtime = time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+    if serverName != '' or None:
+        legends = legendSite.objects.filter(time__gte=strtime).filter(Q(serverName__icontains=serverName)|Q(ip__icontains=serverName))
+        data_s = legendSiteSerializers(legends,many=True).data
+    else:
+        data_s = ''
+    content = {"legends":data_s}
+    return restful.result(code=200,data=content)

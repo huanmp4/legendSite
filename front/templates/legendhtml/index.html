@@ -8,11 +8,13 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
+<script src="{% static 'source/legendJS/jquery-3.3.1.min.js' %}"></script>
 <link rel="stylesheet" href="{% static "source/legendCSS/page1.css" %}">
 <link rel="stylesheet" href="{% static "source/legendCSS/animate.css" %}">
 <script src="{% static 'legendhtml/dragen.js' %}"></script>
 <link rel="stylesheet" href="{% static 'legendhtml/index_style.css' %}">
+<script src="{% static 'source/legendJS/ajax.min.js' %}"></script>
+<script src="{% static 'source/legendJS/template-web.js' %}"></script>
 <head>
     <meta charset="UTF-8">
     <title>传奇私服网站-最新的传奇sf-私服传奇-传奇SF-私服发布网</title>
@@ -107,17 +109,17 @@
                         <div class="wrap-text" >
                             <span class="search-sifu">搜私服</span>
                             <div class="wrap-text-right">
-                                <span><a href="" name="1.76">1.76</a></span>
-                                <span><a href="" name="1.80">1.80</a></span>
-                                <span><a href="" name="old">复古</a></span>
-                                <span><a href="" name="singleOccupation">单职业</a></span>
+                                <span><a class="btn-search-submit1 name176" href="javascript:void(0);" name="1.76" >1.76</a></span>
+                                <span><a class="btn-search-submit2 name180" href="javascript:void(0)" name="1.80">1.80</a></span>
+                                <span><a class="btn-search-submit3 nameold" href="javascript:void(0);" name="old">复古</a></span>
+                                <span><a class="btn-search-submit4 namesingleOccupation" href="javascript:void(0);" name="singleOccupation">单职业</a></span>
                             </div>
                         </div>
 
                         <div class="input-group search-input-sifu col-lg-12">
                             <input name="content" class="form-control" placeholder="输入需要找的服" type="text"/>
                             <div class="input-group-append">
-                                <button class="btn" id="btn-search-submit" type="submit">搜索</button>
+                                <button class="btn btn-search-submit" type="submit">搜索</button>
                             </div>
                         </div>
                     </form>
@@ -133,7 +135,12 @@
             <p class="child4" style="font-size:18px;color:white">让玩家和GM都有一个良好的环境，兼顾屏幕小大不同的用户，本站采用响应式表单</p>
             <p class="child4" style="font-size:15px;color:black">如下链接有违反我国法律的行为或其它不良行为，请联系本站站长QQ:2220605971</p>
         </div>
+
+        <div class="search_show">
+
+        </div>
         <div class="contain child5">
+
             <table class="table ">
                 <thead class="thead-pink">
                     <tr class="tr-font bg-info">
@@ -286,6 +293,42 @@
         </div>
     </div>
 </div>
+
+<script id="template_each" type="text/html">
+{% verbatim %}
+<table class="table template-table-s">
+    {{if template_legends}}
+    <thead class="thead-pink">
+        <tr class="tr-font bg-success">
+            <th scope="col">服务器名</th>
+            <th scope="col">服务器IP</th>
+            <th scope="col">开区时间 月/日/时</th>
+            <th scope="col">线路类型</th>
+            <th scope="col">版本介绍</th>
+            <th scope="col">客服QQ</th>
+            <th scope="col">详细介绍</th>
+        </tr>
+
+    </thead>
+    {{/if}}
+    <tbody class="tbodyOfTable ">
+        {{ each template_legends value nums }}
+        <tr class="bg-warning table-tr">
+            <td class="table-td" ><a class="table-a"  href="#">{{ value.serverName }}</a></td>
+            <td class="table-td" ><a class="table-a"  href="#">{{ value.ip }}</a></td>
+
+            <td class="table-td" style="color:red">{{ value.time }}</td>
+
+            <td class="table-td" >{{ value.type }}</td>
+            <td class="table-td" >{{ value.introduce }}<span>-</span><span style="color:red">推荐</span></td>
+            <td class="table-td" >{{ value.QQ }}</td>
+            <td class="table-td" ><a class="table-a"  href="{{ value.href }}">查看介绍</a></td>
+        </tr>
+        {{ /each }}
+    </tbody>
+</table>
+{% endverbatim %}
+</script>
 
 </body>
 </html>
