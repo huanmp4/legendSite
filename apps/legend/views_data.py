@@ -179,7 +179,7 @@ def startJob(request):
     # schedule.add_job(test1,"interval",minutes=1,id="test1")
     schedule.add_job(test1,"interval",seconds=10,id="test1")
     schedule.add_job(test2,"interval",minutes=10,id="test2")
-    schedule.add_job(getdata_middle,"interval",minutes=1,id="getData_job")
+    schedule.add_job(getdata_middle,"interval",minutes=30,id="getData_job")
     schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()
     return restful.result(code=200,message='开始爬虫计划')
