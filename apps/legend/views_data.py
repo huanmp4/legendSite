@@ -160,11 +160,11 @@ def cleanYesterdayBeforeDate():
     return "每23小时清理数据执行成功"
 
 def test1():
-    print("每一分钟运行一次",time.localtime(time.time()))
+    print("每一分钟运行一次",time.strftime('%Y-%m-%d %H:%M:S',time.localtime(time.time())))
     return "表示OK"
 
 def test2():
-    print("每十分钟运行一次",time.localtime(time.time()))
+    print("每十分钟运行一次",time.strftime('%Y-%m-%d %H:%M:S',time.localtime(time.time())))
     return "表示OK"
 
 
@@ -175,7 +175,7 @@ def startJob(request):
     # schedule.add_job(test1,"interval",minutes=1,id="test1")
     schedule.add_job(test1,"interval",minutes=1,id="test1")
     schedule.add_job(test2,"interval",minutes=10,id="test2")
-    schedule.add_job(getData,"interval",minutes=30,id="getData_job")
+    schedule.add_job(getData,"interval",minutes=2,id="getData_job")
     schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()
     print("开始执行计划爬虫")
