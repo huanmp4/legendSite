@@ -10,7 +10,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 left = 0
 
 def getData():
-
+    print("开始每30分钟获取数据", time.strftime('%Y-%m-%d %H:%M:S', time.localtime(time.time())))
     url = "https://918hj.zjlbw.top/"
     chrome_options = Options()
     chrome_options.add_argument("--no-sandbox")
@@ -137,8 +137,8 @@ def getData():
                                               introduce=legend[4],
                                               QQ=legend[5], href=legend[6], onPage=onPage)
     # return redirect(reverse('legend:check'))
-    print("每30分钟获取数据执行成功")
-
+    print("每30分钟获取数据执行成功",time.strftime('%Y-%m-%d %H:%M:S',time.localtime(time.time())))
+    return "每23小时清理数据执行成功"
 
 
 def cleanDate():
@@ -163,13 +163,18 @@ def test1():
     print("每一分钟运行一次",time.localtime(time.time()))
     return "表示OK"
 
+def test2():
+    print("每十分钟运行一次",time.localtime(time.time()))
+    return "表示OK"
+
 
 #"interval"参数是minutes,seconds,而且必须是int类型
 #"cron"参数是minute,second,类型可以是str或int
 def startJob(request):
     schedule = BlockingScheduler()
     # schedule.add_job(test1,"interval",minutes=1,id="test1")
-    schedule.add_job(test1,"interval",seconds=10,id="test1")
+    schedule.add_job(test1,"interval",minutes=1,id="test1")
+    schedule.add_job(test2,"interval",minutes=10,id="test2")
     schedule.add_job(getData,"interval",minutes=30,id="getData_job")
     schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()

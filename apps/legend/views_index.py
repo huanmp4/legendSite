@@ -55,15 +55,17 @@ def index(request):
 #4.首推之后的服
 
 def searchSubmit(request):
-    name180 = '１８５'
-    name176 = '１７６'
+    name180 = '８０'
+    name176 = '７６'
 
     serverName = request.POST.get('content')
     if serverName == '1.76':
         serverName = name176
     if serverName == '1.80':
         serverName = name180
-    print("servi:",serverName)
+    if serverName == '176':
+        serverName = name176
+    print("searchName:",serverName)
     strtime = time.strftime( "%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     if serverName != '' or None:
         legends = legendSite.objects.filter(time__gte=strtime).filter(Q(serverName__icontains=serverName)|Q(ip__icontains=serverName))
