@@ -9,6 +9,9 @@ function Dragen() {
     this.btn2 = $(".btn-search-submit2");
     this.btn3 = $(".btn-search-submit3");
     this.btn4 = $(".btn-search-submit4");
+    this.pullup = $(".pullup");
+    this.pulldown = $(".pulldown");
+    this.jumbotron = $("#jumbotron");
 }
 
 Dragen.prototype.onhoverEvent = function(){
@@ -27,6 +30,22 @@ Dragen.prototype.onhoverEvent = function(){
     self.inputsi.css("background","rgba(0,0,0,0.3)")
 };
 
+Dragen.prototype.pull = function(){
+    var self = this;
+    this.pullup.fadeIn(3000);
+    this.pullup.click(function(e){
+        e.preventDefault();
+        self.jumbotron.slideUp("slow");
+        self.pulldown.fadeIn("slow");
+        self.pullup.fadeOut("slow");
+    });
+    this.pulldown.click(function(e){
+        e.preventDefault();
+        self.jumbotron.fadeIn("slow");
+        self.pulldown.fadeOut("slow");
+        self.pullup.fadeIn("slow");
+    })
+};
 
 
 Dragen.prototype.ax = function(e){
@@ -92,6 +111,7 @@ Dragen.prototype.firstLoad = function(){
 Dragen.prototype.Run = function() {
     this.onhoverEvent();
     this.onSubmitSearch();
+    this.pull();
 };
 
 

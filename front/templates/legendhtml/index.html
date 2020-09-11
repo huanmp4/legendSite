@@ -86,6 +86,14 @@
     color:white;
     font-size:18px;
 }
+
+.jumbotron{
+    margin-bottom:0;
+}
+.pullup,.pulldown{
+    margin-bottom: 40px;
+}
+
 </style>
 
 
@@ -99,8 +107,8 @@
 
 
 <div class="container">
-    <div class="container-fluid">
-        <div class="jumbotron bg-info" style="padding-top:20px;padding-bottom:20px;min-width:1080px;">
+    <div class="container-fluid" >
+        <div class="jumbotron bg-info" id="jumbotron" style="padding-top:20px;padding-bottom:20px;min-width:1080px;">
             <div class="col-lg-12 ">
                 <div class="col-lg-3"></div>
 {#                {% url 'legend:searchSubmit' %}#}
@@ -130,12 +138,12 @@
                     <span class="resume-hide ">vs6688.com</span>
                 </div>
             </div>
-            <p class="lead child2 middle-content">欢迎来到vs6688传奇私服网站，本网站免费发布，扶持好服，造传奇沙漠的一片绿洲</p>
+            <p class="lead child2 middle-content">欢迎来到vs6688传奇私服网站，本网站免费发布，扶持好服，营造传奇沙漠的一片绿洲!</p>
             <hr class="my-4 child3">
-            <p class="child4" style="font-size:18px;color:white">让玩家和GM都有一个良好的环境，兼顾屏幕小大不同的用户，本站采用响应式表单</p>
             <p class="child4" style="font-size:15px;color:black">如下链接有违反我国法律的行为或其它不良行为，请联系本站站长QQ:2220605971</p>
         </div>
-
+        <a href="javascript:void(0)"><img style="margin-left:48%;display:none;width:30px;height:30px" class="pulldown" src="{% static 'legendhtml/images/down.png' %}"></a>
+        <a href="javascript:void(0)"><img style="margin-left:48%;display:none;width:30px;height:20px" class="pullup" src="{% static 'legendhtml/images/up.png' %}"></a>
         <div class="search_show" style="min-width:1080px;">
 
         </div>
