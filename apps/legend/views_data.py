@@ -162,15 +162,22 @@ def cleanYesterdayBeforeDate():
     return restful.result()
 
 def test1():
-    print("每一分钟运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+    print("每10秒运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
     return "表示OK"
 
 def test2():
-    print("每十分钟运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+    print("每1分钟运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
+    return "表示OK"
+
+def test3():
+    print("定时一分钟运行一次，共5次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
     return "表示OK"
 
 def getdata_middle():
     getData('ok')
+    print("="*30)
+    print("开始获取数据", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
+    print("=" * 30)
 
 #"interval"参数是minutes,seconds,而且必须是int类型
 #"cron"参数是minute,second,类型可以是str或int
@@ -178,8 +185,14 @@ def startJob(request):
     schedule = BlockingScheduler()
     # schedule.add_job(test1,"interval",minutes=1,id="test1")
     schedule.add_job(test1,"interval",seconds=10,id="test1")
-    schedule.add_job(test2,"interval",minutes=10,id="test2")
-    schedule.add_job(getdata_middle,"interval",minutes=30,id="getData_job")
+    schedule.add_job(test2,"interval",minutes=1,id="test2")
+    schedule.add_job(test3, "cron", hour=18, minute=16, id="test3")
+    schedule.add_job(test3, "cron", hour=18, minute=17, id="test4")
+    schedule.add_job(test3, "cron", hour=18, minute=18, id="test5")
+    schedule.add_job(test3, "cron", hour=18, minute=19, id="test6")
+    schedule.add_job(test3, "cron", hour=18, minute=20, id="test7")
+
+    schedule.add_job(getdata_middle,"interval",minutes=1,id="getData_job")
     schedule.add_job(cleanYesterdayBeforeDate,"cron",hour=23,minute=50,id="cleanYesterdayBeforeDate_job")
     schedule.start()
     return restful.result(code=200,message='开始爬虫计划')
