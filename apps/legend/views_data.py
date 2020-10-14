@@ -159,25 +159,42 @@ def cleanYesterdayBeforeDate():
     #删除
     legendSite.objects.filter(time__lt=yesterdayData).delete()
     print("每23小时清理数据执行成功")
-    return restful.result()
+    return restful.ok()
+
+#清除1天前的私服数据
+def cleanYesterdayBeforeDate_request(request):
+    #把数据移动到别的表
+    yesterdayData = time.strftime("%Y-%m-%d 0:0:0", time.localtime(time.time()))
+    oldData = legendSite.objects.filter(time__lt=yesterdayData)
+
+    for data in oldData:
+        oldLegendSite.objects.create(serverName=data.serverName, ip=data.ip, time=data.time, type=data.type,
+                                              introduce=data.introduce,
+                                              QQ=data.QQ, href=data.href, onPage=data.onPage)
+    #删除
+    legendSite.objects.filter(time__lt=yesterdayData).delete()
+    print("每23小时清理数据执行成功")
+    return restful.ok()
 
 def test1():
     print("每10秒运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
-    return "表示OK"
+    return restful.ok()
 
 def test2():
     print("每1分钟运行一次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
-    return "表示OK"
+    return restful.ok()
 
 def test3():
     print("定时一分钟运行一次，共5次",time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time())))
-    return "表示OK"
+    return restful.ok()
 
 def getdata_middle():
     getData('ok')
     print("="*30)
     print("开始获取数据", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())))
     print("=" * 30)
+
+
 
 #"interval"参数是minutes,seconds,而且必须是int类型
 #"cron"参数是minute,second,类型可以是str或int

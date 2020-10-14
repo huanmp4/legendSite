@@ -10,6 +10,7 @@ urlpatterns = [
     path('visit',views.visit,name="visit"),
     path('check',views.check,name="check"),
     path('cleanalldata', views.CleanAllData, name="cleanalldata"),
+
 ]
 
 
@@ -18,7 +19,7 @@ urlpatterns += [
     path("getdata",views_data.getData,name="getdata"),
     path("cleanDate",views_data.cleanDate,name="cleanDate"),
     path("startJob",views_data.startJob,name="startJob"),
-
+path('cleanYesterdayBeforeDate_request', views_data.cleanYesterdayBeforeDate_request, name="cleanYesterdayBeforeDate_request"),
 
 ]
 
